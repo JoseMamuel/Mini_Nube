@@ -39,22 +39,7 @@ while True:
         except FileNotFoundError:
             print("Archivo no encontrado en tu PC")
 
-    elif opcion == "3":
-        archivo = input("Nombre del archivo a descargar: ")
-        client = socket.socket()
-        client.connect((HOST, PORT))
-        client.send(f"DESCARGAR {archivo}".encode())
-        with open("descargado_" + archivo, "wb") as f:
-            while True:
-                data = client.recv(BUFFER_SIZE)
-                if data == b"FIN":
-                    break
-                elif data.startswith(b"ERROR"):
-                    print(data.decode())
-                    break
-                f.write(data)
-        client.close()
-        print("Archivo descargado")
+
 
     elif opcion == "4":
         print("Saliendo de la nube")
